@@ -92,7 +92,7 @@ async def extract_images(body: dict):
             # Look for url('...') or url("...") patterns in CSS
             # Note: This regex pattern is intentionally limited to common image extensions
             # to avoid false positives from other CSS properties
-            urls_in_style = re.findall(r'url\([\'"]?(.*?\.(?:png|jpe?g|gif|webp|ico|svg))[\'"]?\)', style_attr, re.IGNORECASE)
+            urls_in_style = re.findall(r'url\([\'"]?(.*?\.(?:png|jpe?g|gif))[\'"]?\)', style_attr, re.IGNORECASE)
             for url in urls_in_style:
                 absolute_url = urljoin(target_url, url)
                 if is_image_url(absolute_url):

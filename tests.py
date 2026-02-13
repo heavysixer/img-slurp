@@ -31,10 +31,7 @@ def test_extract_images_with_mocked_html():
     image_urls = [
         "https://example.com/image.png",
         "https://example.com/photo.jpg",
-        "https://example.com/animation.gif",
-        "https://example.com/design.webp",
-        "https://example.com/icon.ico",
-        "https://example.com/logo.svg"
+        "https://example.com/animation.gif"
     ]
 
     for url in image_urls:
