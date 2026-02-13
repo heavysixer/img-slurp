@@ -8,12 +8,14 @@ import re
 
 app = FastAPI(title="Image Extractor API")
 
-# Regex pattern to strictly match common image extensions
-IMAGE_PATTERN = re.compile(r'.*\.(?:png|jpe?g|gif|webp|bmp|ico|svg)$', re.IGNORECASE)
+# Regex pattern to strictly match common image extensions with proper URL structure
+IMAGE_PATTERN = re.compile(r'^https?://.*\.(?:png|jpe?g|gif|webp|ico|svg)$', re.IGNORECASE)
 
 def is_image_url(url: str) -> bool:
     """Check if the URL ends with a common image extension."""
-    return bool(IMAGE_PATTERN.match(url))
+    # Remove query parameters and fragments before checking
+    clean_url = url.split('?')[0].split('#')[0]
+    return bool(IMAGE_PATTERN.match(clean_url))
 
 @app.post("/extract-images")
 async def extract_images(body: dict):
