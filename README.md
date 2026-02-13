@@ -91,6 +91,62 @@ images = response.json()
 print(images)
 ```
 
+### Using JavaScript (Fetch API)
+
+```javascript
+async function extractImages(url) {
+  try {
+    const response = await fetch('http://localhost:8000/extract-images', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ url: url })
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const images = await response.json();
+    console.log('Found images:', images);
+    return images;
+  } catch (error) {
+    console.error('Error extracting images:', error);
+  }
+}
+
+// Usage
+extractImages('https://example.com');
+```
+
+### Using JavaScript (XMLHttpRequest)
+
+```javascript
+function extractImagesXHR(url) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'http://localhost:8000/extract-images', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        const images = JSON.parse(xhr.responseText);
+        console.log('Found images:', images);
+      } else {
+        console.error('Error:', xhr.status, xhr.statusText);
+      }
+    }
+  };
+
+  const data = JSON.stringify({ url: url });
+  xhr.send(data);
+}
+
+// Usage
+extractImagesXHR('https://example.com');
+```
+
 ## Error Handling
 
 The API returns appropriate HTTP status codes:
