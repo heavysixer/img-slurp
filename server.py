@@ -111,4 +111,15 @@ async def extract_images(body: dict):
 # Run the server
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    import argparse
+    import os
+
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description="Image Extractor API Server")
+    parser.add_argument("--port", "-p", type=int, default=8000, help="Port to run the server on (default: 8000)")
+    args = parser.parse_args()
+
+    # Allow port to be overridden by environment variable
+    port = int(os.environ.get("PORT", args.port))
+
+    uvicorn.run(app, host="0.0.0.0", port=port)

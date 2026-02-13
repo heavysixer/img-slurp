@@ -61,6 +61,18 @@ python server.py
 
 The server will start on `http://localhost:8000`.
 
+You can specify a custom port using the `--port` flag:
+
+```bash
+python server.py --port 8080
+```
+
+Or by setting the `PORT` environment variable:
+
+```bash
+PORT=8080 python server.py
+```
+
 ## Running Tests
 
 To run the tests:
