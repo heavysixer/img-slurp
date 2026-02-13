@@ -174,10 +174,6 @@ The service recognizes these image extensions:
 - `.png`
 - `.jpg` / `.jpeg`
 - `.gif`
-- `.webp`
-- `.bmp`
-- `.ico`
-- `.svg`
 
 ## License
 
